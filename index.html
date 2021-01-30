@@ -39,7 +39,7 @@
         </div>
 
 
-        <div class="booking-form">
+        <div id="form-body" class="booking-form">
             <h3>Book Ocean Time</h3>
             <div class="input-group">
                 <label for="">Flying From</label>
@@ -108,10 +108,37 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-style">Book Now</button>
+            <button id="booking" class="btn-style">Book Now</button>
+        </div>
+        <div id="transaction-area" class="invoice">
+            <h3 style="text-align: center; color: #E33741; margin-top: 20px;">Ticket Booking Invoice</h3>
+            <p style="color:#E33741">
+                ---------------------------------------------------------------------------------------</p>
+            <br>
+            <div class="invoice-list">
+                <h5>Number of First-Class Tickets: <span id="first-ticket">0</span></h5>
+                <h5>First-Class Ticket Total Price: <span id="first-price">$0</span></h5>
+                <br>
+                <p>-----------------------------------------------</p>
+                <br>
+                <h5>Number of Economy-Class Tickets: <span id="economy-ticket">0</span></h5>
+                <h5>Economy-Class Ticket Total Price: <span id="economy-price">$0</span></h5>
+                <br>
+                <p>-----------------------------------------------</p>
+                <br>
+                <h5>Total Tickets: <span id="total-ticket">0</span></h5>
+                <h5>Total Price: <span id="total-price">$0</span></h5>
+                <br>
+                <p>-----------------------------------------------</p>
+                <br>
+                <h4 style="color:#E33741"> -- Thank You -- </h4>
+            </div>
         </div>
     </main>
     <script>
+
+        //catching and passing value for First-class tickets
+
         document.getElementById('first-increase').addEventListener('click', function () {
             handleTicketChange('first', true);
         })
@@ -119,12 +146,16 @@
             handleTicketChange('first', false);
         })
 
+        //catching and passing value for economy-class tickets 
+
         document.getElementById('economy-increase').addEventListener('click', function () {
             handleTicketChange('economy', true);
         })
         document.getElementById('economy-decrease').addEventListener('click', function () {
             handleTicketChange('economy', false);
         })
+
+        //function for calculating the amount of tickets
 
         function handleTicketChange(ticket, isIncrease) {
             const ticketInput = document.getElementById(ticket + '-count');
@@ -142,6 +173,8 @@
             calculateTotal();
         }
 
+        //function for calculating total amount
+
         function calculateTotal() {
             const firstCount = getInputValue('first');
             const economyCount = getInputValue('economy');
@@ -152,9 +185,31 @@
             const vat = subtotal * 0.1;
             document.getElementById('vat-amount').innerText = '$' + vat;
 
+            //grand total amount show
+
             const grandTotal = subtotal + vat;
             document.getElementById('grand-total').innerText = '$' + grandTotal;
+
+            //invoice show 
+
+            //invoice First-class
+
+            document.getElementById('first-ticket').innerText = firstCount;
+            document.getElementById('first-price').innerText = '$' + firstCount * 150;
+
+            //invoice Economy-class
+
+            document.getElementById('economy-ticket').innerText = economyCount;
+            document.getElementById('economy-price').innerText = '$' + economyCount * 100;
+
+            //invoice total amount
+
+            document.getElementById('total-ticket').innerText = firstCount + economyCount;
+            document.getElementById('total-price').innerText = '$' + grandTotal;
+
         }
+
+        //function for getting input of ticket count
 
         function getInputValue(ticket) {
             const ticketInput = document.getElementById(ticket + '-count');
@@ -162,6 +217,15 @@
             return ticketCount;
         }
 
+        //function for going to invoice
+
+        const bookingBtn = document.getElementById('booking');
+        bookingBtn.addEventListener("click", function () {
+            const bookingArea = document.getElementById('form-body');
+            bookingArea.style.display = "none";
+            const transactionArea = document.getElementById('transaction-area');
+            transactionArea.style.display = "block";
+        })
     </script>
 </body>
 

@@ -120,3 +120,17 @@ nav ul li a:hover, a.active{
     display: flex;
     justify-content: space-between;
 }
+.invoice{
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    float: right;
+    width: 65%;
+    margin-left: 180px;
+    display: none;
+}
+.invoice-list{
+    text-align: center;
+}
