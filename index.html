@@ -113,7 +113,7 @@
 
 
         <!-- html of extra part -->
-        
+
 
         <div id="transaction-area" class="invoice">
             <h3 style="text-align: center; color: #E33741; margin-top: 20px;">Ticket Booking Invoice</h3>
@@ -133,6 +133,7 @@
                 <br>
                 <h5>Total Tickets: <span id="total-ticket">0</span></h5>
                 <h5>Total Price: <span id="total-price">$0</span></h5>
+                <h5>Total VAT: <span id="total-vat">$0</span></h5>
                 <br>
                 <p>-----------------------------------------------</p>
                 <br>
@@ -211,6 +212,10 @@
 
             document.getElementById('total-ticket').innerText = firstCount + economyCount;
             document.getElementById('total-price').innerText = '$' + grandTotal;
+
+            //invoice vat
+            
+            document.getElementById('total-vat').innerText = '$' + vat;
 
         }
 
